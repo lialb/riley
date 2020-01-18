@@ -23,6 +23,7 @@ import com.example.allie.StatsPagerStuff.StatsAdaptor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
@@ -60,9 +61,24 @@ public class MainActivity extends AppCompatActivity {
         animations.add(new BackgroundChange(getResources().getColor(R.color.powderBlue), person, bg));
 
         stats = new ArrayList<>();
-        stats.add(new IntegerStat("Age", Arrays.asList(70, 70, 45, 30, 43)));
-        stats.add(new IntegerStat("Income", Arrays.asList(70000, 70000, 45000, 30000, 43000)));
-        stats.add(new IntegerStat("Money Spent", Arrays.asList(170, 200, 45, 130, 30)));
+
+        Random rand = new Random();
+        ArrayList<Integer> age = new ArrayList();
+
+        for (int i = 0; i < 1000;  i++) {
+            int new_age = (int) ( rand.nextGaussian() * 30 + 45);
+            new_age = Math.max(5,new_age);
+            new_age = Math.min(100,new_age);
+            age.add(new_age);
+        }
+        ArrayList income = new ArrayList();
+        for (int i = 0; i < 1000;  i++) {
+            income.add(((int)(Math.random() * 100000)));
+        }
+        age.sort(Integer::compareTo);
+        stats.add(new IntegerStat("Age - ", age));
+        stats.add(new IntegerStat("Income - ", income));
+        stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
         adaptor = new StatsAdaptor(stats, this);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adaptor);

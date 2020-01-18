@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.allie.R;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
 
 import java.util.List;
 
@@ -44,7 +47,7 @@ public class StatsAdaptor extends PagerAdapter {
         ((TextView) view.findViewById(R.id.name)).setText(stats.get(position).getName());
         ((TextView) view.findViewById(R.id.average)).setText( stats.get(position).getAverage().toString());
         stats.get(position).addPieChart(context, view.findViewById(R.id.stat_detail));
-        stats.get(position).addHistogramChart(context, view.findViewById(R.id.stat_detail));
+        //stats.get(position).addHistogramChart(context, view.findViewById(R.id.stat_detail));
         //view.animate().translationYBy(2*view.findViewById(R.id.stat_detail).getHeight()).setDuration(0);
         //Animation animationUp = AnimationUtils.loadAnimation(context, R.anim.slide_up);
         //Animation animationDown = AnimationUtils.loadAnimation(context, R.anim.slide_down);
@@ -56,10 +59,14 @@ public class StatsAdaptor extends PagerAdapter {
 
                     TransitionManager.beginDelayedTransition(container, new AutoTransition());
                     view.findViewById(R.id.stat_detail).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.stat_general).animate().translationXBy(450).setDuration(200);
+                    PieChart chart = stats.get(position).chart;
+                    chart.spin(1000, chart.getRotationAngle(), chart.getRotationAngle()+360, Easing.EaseInOutCubic);
                     //view.animate().translationYBy(-view.findViewById(R.id.stat_detail).getHeight()).setDuration(0);
                     //view.findViewById(R.id.stat_detail).animate().alpha(255)
                     //view.animate().translationYBy(-view.findViewById(R.id.stat_detail).getHeight()).setDuration(1000);
                 }else {
+                    view.findViewById(R.id.stat_general).animate().translationXBy(-450).setDuration(200);
                     TransitionManager.beginDelayedTransition(container, new AutoTransition());
                     view.findViewById(R.id.stat_detail).setVisibility(View.GONE);
                     //view.animate().translationYBy(view.findViewById(R.id.stat_detail).getHeight()).setDuration(1000);

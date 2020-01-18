@@ -9,5 +9,9 @@
     <color name="powderBlue">#ADE9E3</color>
     <color name="cambridgeBlue">#A2B7BB</color>
     <color name="defaultBackground">#F3F8FB</color>
-
+    <color name="primaryGray">#deecf6</color>
+    <color name="primaryDarkTurq">#003945</color>
+    <color name="primaryLightTurq">#1ec4b4</color>
+    <color name="primaryDarkBlue">#011638</color>
+    <color name="primaryRed"> #ec4847 </color>
 </resources>
