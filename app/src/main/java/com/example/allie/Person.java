@@ -17,7 +17,7 @@ public class Person implements CanvasDrawable {
     private Paint paint = new Paint();
 
     Person(int x, int y, Context context) {
-        rect = new Rect(x, y, x + 100, y + 100);
+        rect = new Rect(x, y, x + 500, y + 500);
         img = BitmapFactory.decodeResource(context.getResources(), R.drawable.materialdesign_image);
         paint.setAntiAlias(true);
         paint.setColor(Color.RED);

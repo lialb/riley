@@ -17,11 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_main);
 
-        linearLayout = findViewById(R.id.linearLayout);
-        CanvasTest canvas = new CanvasTest(this);
-        linearLayout.addView(canvas);
+//        Canvas canvas = new Canvas();
+//        Person person = new Person(100, 100, this);
+//        person.draw(canvas);
+
+//        linearLayout = findViewById(R.id.linearLayout);
+//        CanvasTest canvas = new CanvasTest(this);
+//        linearLayout.addView(canvas);
     }
 //    private Canvas mcanvas = new Canvas();
 //    private Paint mpaint = new Paint();
