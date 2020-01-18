@@ -28,4 +28,8 @@ public class Person implements CanvasDrawable {
         rightArm.draw(canvas);
     }
 
+    public Arm getArm() {
+        return rightArm;
+    }
+
 }
