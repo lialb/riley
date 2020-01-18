@@ -10,13 +10,15 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     private val person = Person(100, 300, context)
     private val background = Background(context)
+    private val money = StackDrawable(10, 60, R.drawable.money_stack, context);
 
     // Called when the view should render its content.
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         // DRAW STUFF HERE
         background.draw(canvas)
-        person.draw(canvas)
+//        person.draw(canvas)
+        money.draw(canvas)
         invalidate()
     }
 
@@ -26,6 +28,10 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun getPerson(): Person {
         return person
+    }
+
+    fun getMoney(): StackDrawable {
+        return money
     }
 
 }
