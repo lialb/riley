@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         List<AnimationStep> animations = new ArrayList<>();
         Person person = canvas.getPerson();
         Background bg = canvas.getBackgroundDrawable();
-        MoneyStackGraphic income = new MoneyStackGraphic(10, this);
-        canvas.addDrawable(income);
+        MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
+        canvas.addDrawable(incomeGraphic);
 
 
         Button button = findViewById(R.id.button);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
 
         AnimationStep[] incomeStep = {
-            new GraphicStep(income, person, bg),
+            new GraphicStep(incomeGraphic, person, bg),
             new BackgroundStep(getResources().getColor(R.color.spanishPink), person, bg)
         };
 
