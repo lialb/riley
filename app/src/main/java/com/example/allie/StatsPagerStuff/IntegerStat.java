@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class IntegerStat extends AttrStats<Integer> {
     public IntegerStat(String name, List<Integer> dataPoints) {
@@ -30,20 +31,5 @@ public class IntegerStat extends AttrStats<Integer> {
         return (int) dataPoints.stream().mapToInt(Integer::intValue).average().getAsDouble();
     }
 
-    @Override
-    public View addCharts(Context context, View root) {
-        PieChart chart = new PieChart(context);
-        chart.setMinimumHeight(500);
-        ((LinearLayout) root).addView(chart);
-        List<PieEntry> entries = new ArrayList<PieEntry>();
-        for (Integer i: dataPoints) {
-            entries.add(new PieEntry(i));
-        }
-        PieDataSet dataSet = new PieDataSet(entries, this.name);
-        PieData pieData = new PieData(dataSet);
-        chart.setData(pieData);
-        chart.invalidate();
-        return root;
-    }
 
 }

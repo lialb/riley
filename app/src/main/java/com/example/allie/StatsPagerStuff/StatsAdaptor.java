@@ -43,8 +43,8 @@ public class StatsAdaptor extends PagerAdapter {
         //fill in view items for specific stat
         ((TextView) view.findViewById(R.id.name)).setText(stats.get(position).getName());
         ((TextView) view.findViewById(R.id.average)).setText( stats.get(position).getAverage().toString());
-        stats.get(position).addCharts(context, view.findViewById(R.id.stat_detail));
-
+        stats.get(position).addPieChart(context, view.findViewById(R.id.stat_detail));
+        stats.get(position).addHistogramChart(context, view.findViewById(R.id.stat_detail));
         //view.animate().translationYBy(2*view.findViewById(R.id.stat_detail).getHeight()).setDuration(0);
         //Animation animationUp = AnimationUtils.loadAnimation(context, R.anim.slide_up);
         //Animation animationDown = AnimationUtils.loadAnimation(context, R.anim.slide_down);
