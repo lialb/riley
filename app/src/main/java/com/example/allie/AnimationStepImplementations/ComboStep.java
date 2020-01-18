@@ -8,7 +8,7 @@ import java.util.List;
 public class ComboStep extends AnimationStep {
     AnimationStep[] steps;
 
-    ComboStep(AnimationStep[] steps, Person person, Background background) {
+    public ComboStep(AnimationStep[] steps, Person person, Background background) {
         super(person, background);
         this.steps = steps;
     }

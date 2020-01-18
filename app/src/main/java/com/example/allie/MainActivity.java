@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import com.example.allie.AnimationStepImplementations.AnimationStep;
 import com.example.allie.AnimationStepImplementations.BackgroundChange;
+import com.example.allie.AnimationStepImplementations.ComboStep;
 import com.example.allie.AnimationStepImplementations.VisualizeAnimation;
 import com.example.allie.StatsPagerStuff.AttrStats;
 import com.example.allie.StatsPagerStuff.IntegerStat;
@@ -54,8 +55,15 @@ public class MainActivity extends AppCompatActivity {
         StackDrawable income = new StackDrawable(10, 60, R.drawable.money_stack, this);
         canvas.addDrawable(income);
 
-        animations.add(new BackgroundChange(getResources().getColor(R.color.spanishPink), person, bg));
-        animations.add(new VisualizeAnimation(income, person, bg));
+        animations.add(new BackgroundChange(getResources().getColor(R.color.cambridgeBlue), person, bg));
+
+        AnimationStep[] incomeStep = {
+            new VisualizeAnimation(income, person, bg),
+            new BackgroundChange(getResources().getColor(R.color.spanishPink), person, bg)
+        };
+
+        animations.add(new ComboStep(incomeStep, person, bg));
+
 //        animations.add(new BackgroundChange(getResources().getColor(R.color.cambridgeBlue), person, bg));
         animations.add(new BackgroundChange(getResources().getColor(R.color.powderBlue), person, bg));
 
