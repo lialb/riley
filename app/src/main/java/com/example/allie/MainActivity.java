@@ -3,6 +3,7 @@ package com.example.allie;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.LinearLayout;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
@@ -10,6 +11,8 @@ import android.widget.RelativeLayout;
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout linearLayout;
+    private Canvas canvas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
