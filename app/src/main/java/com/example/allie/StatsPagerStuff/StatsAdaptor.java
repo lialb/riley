@@ -43,13 +43,13 @@ public class StatsAdaptor extends PagerAdapter {
         //fill in view items for specific stat
         ((TextView) view.findViewById(R.id.name)).setText(stats.get(position).getName());
         ((TextView) view.findViewById(R.id.average)).setText( stats.get(position).getAverage().toString());
+        stats.get(position).addCharts(context, view.findViewById(R.id.stat_detail));
 
-        view.animate().translationYBy(2*view.findViewById(R.id.stat_detail).getHeight()).setDuration(0);
+        //view.animate().translationYBy(2*view.findViewById(R.id.stat_detail).getHeight()).setDuration(0);
         //Animation animationUp = AnimationUtils.loadAnimation(context, R.anim.slide_up);
         //Animation animationDown = AnimationUtils.loadAnimation(context, R.anim.slide_down);
 
         view.setOnClickListener(new View.OnClickListener() {
-            private boolean toggle = true;
             @Override
             public void onClick(View v) {
                 if (view.findViewById(R.id.stat_detail).getVisibility() == View.GONE) {
@@ -64,7 +64,6 @@ public class StatsAdaptor extends PagerAdapter {
                     view.findViewById(R.id.stat_detail).setVisibility(View.GONE);
                     //view.animate().translationYBy(view.findViewById(R.id.stat_detail).getHeight()).setDuration(1000);
                 }
-                toggle = !toggle;
             }
         });
         //CardView.LayoutParams parms = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

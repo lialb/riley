@@ -54,20 +54,16 @@
                 />
 
         </RelativeLayout>
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/stat_detail"
             android:visibility="gone"
+            android:orientation="vertical"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Imageinary Graph Here"
-                android:textSize="100px"
-                />
 
-        </RelativeLayout>
+
+        </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
