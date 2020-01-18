@@ -4,4 +4,5 @@ import android.graphics.Canvas;
 
 public interface CanvasDrawable {
     void draw(Canvas canvas);
+    void startAnimation();
 }

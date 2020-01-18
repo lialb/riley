@@ -53,7 +53,6 @@ public class StackDrawable implements CanvasDrawable {
             }
         });
         animator.start();
-
     }
 
     public void draw(Canvas canvas) {

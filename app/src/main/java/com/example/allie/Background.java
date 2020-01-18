@@ -8,13 +8,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class Background implements CanvasDrawable {
+public class Background {
 
     private Paint paint = new Paint();
 
     Background(Context context) {
         paint.setAntiAlias(true);
-        paint.setColor(context.getResources().getColor(R.color.cambridgeBlue));
+        paint.setColor(context.getResources().getColor(R.color.spanishPink));
         paint.setStyle(Paint.Style.FILL);
     }
 

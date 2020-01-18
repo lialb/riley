@@ -4,21 +4,28 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import com.example.allie.AnimationStepImplementations.AnimationStep
 
 class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : View(context, attrs, defStyleAttr) {
 
     private val person = Person(100, 300, context)
     private val background = Background(context)
-    private val money = StackDrawable(10, 60, R.drawable.money_stack, context);
+
+    private val canvasDrawables: MutableList<CanvasDrawable> = ArrayList()
+
+    fun addDrawable(canvasDrawable: CanvasDrawable) {
+        canvasDrawables.clear()
+        canvasDrawables.add(canvasDrawable)
+    }
 
     // Called when the view should render its content.
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         // DRAW STUFF HERE
         background.draw(canvas)
-//        person.draw(canvas)
-        money.draw(canvas)
+        for (item in canvasDrawables) item.draw(canvas)
+
         invalidate()
     }
 
@@ -28,10 +35,6 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun getPerson(): Person {
         return person
-    }
-
-    fun getMoney(): StackDrawable {
-        return money
     }
 
 }

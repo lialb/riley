@@ -8,7 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class Person implements CanvasDrawable {
+public class Person {
 
     private Bitmap img;
     private Rect rect;

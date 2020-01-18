@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 
-public class Arm implements CanvasDrawable {
+public class Arm {
     private Paint paint = new Paint();
 
     // Absolute fields
