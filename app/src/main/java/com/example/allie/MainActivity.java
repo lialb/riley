@@ -7,12 +7,11 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    Canvas canvas;
+    private Canvas canvas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 }
