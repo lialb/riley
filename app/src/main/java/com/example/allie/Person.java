@@ -26,6 +26,5 @@ public class Person implements CanvasDrawable {
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(img, null, rect, paint);
-
     }
 }
