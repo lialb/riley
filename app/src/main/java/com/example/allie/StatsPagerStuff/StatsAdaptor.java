@@ -45,7 +45,15 @@ public class StatsAdaptor extends PagerAdapter {
 
         //fill in view items for specific stat
         ((TextView) view.findViewById(R.id.name)).setText(stats.get(position).getName());
-        ((TextView) view.findViewById(R.id.average)).setText( stats.get(position).getAverage().toString());
+        if (stats.get(position).getName().equals("Income - ")) {
+            ((TextView) view.findViewById(R.id.average)).setText( "$" + stats.get(position).getAverage().toString() + ",000");
+
+        } else if (stats.get(position).getName().equals("Money Spent - ")) {
+            ((TextView) view.findViewById(R.id.average)).setText( "$" + stats.get(position).getAverage().toString());
+
+        } else {
+            ((TextView) view.findViewById(R.id.average)).setText(stats.get(position).getAverage().toString());
+        }
         stats.get(position).addPieChart(context, view.findViewById(R.id.stat_detail));
         //stats.get(position).addHistogramChart(context, view.findViewById(R.id.stat_detail));
         //view.animate().translationYBy(2*view.findViewById(R.id.stat_detail).getHeight()).setDuration(0);
