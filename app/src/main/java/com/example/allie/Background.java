@@ -2,6 +2,7 @@ package com.example.allie;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,9 +12,9 @@ public class Background implements CanvasDrawable {
 
     private Paint paint = new Paint();
 
-    Background() {
+    Background(Context context) {
         paint.setAntiAlias(true);
-        paint.setColor(Color.RED);
+        paint.setColor(context.getResources().getColor(R.color.cambridgeBlue));
         paint.setStyle(Paint.Style.FILL);
     }
 
@@ -30,8 +31,8 @@ public class Background implements CanvasDrawable {
             public void onAnimationUpdate(ValueAnimator animator) {
                 paint.setColor((int) animator.getAnimatedValue());
             }
-
         });
+
         colorAnimation.start();
     }
 

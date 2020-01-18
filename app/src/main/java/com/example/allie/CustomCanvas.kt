@@ -9,7 +9,7 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
     : View(context, attrs, defStyleAttr) {
 
     private val person = Person(100, 300, context)
-    private val background = Background()
+    private val background = Background(context)
 
     // Called when the view should render its content.
     override fun onDraw(canvas: Canvas?) {

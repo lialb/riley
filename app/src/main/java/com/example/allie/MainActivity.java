@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                canvas.getBackgroundDrawable().updateColor(Color.BLUE);
+                canvas.getBackgroundDrawable().updateColor(getResources().getColor(R.color.spanishPink));
             }
         });
     }

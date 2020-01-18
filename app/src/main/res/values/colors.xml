@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="darkMediumGray">#A2AAB6</color>
+    <color name="spanishPink">#F8BCBC</color>
+    <color name="powderBlue">#ADE9E3</color>
+    <color name="cambridgeBlue">#A2B7BB</color>
+    <color name="defaultBackground">#F3F8FB</color>
+
 </resources>
