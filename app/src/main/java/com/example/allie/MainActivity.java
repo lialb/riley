@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.example.allie.AnimationStepImplementations.AnimationStep;
+import com.example.allie.AnimationStepImplementations.BackgroundChange;
 import com.example.allie.StatsPagerStuff.AttrStats;
 import com.example.allie.StatsPagerStuff.IntegerStat;
 import com.example.allie.StatsPagerStuff.StatsAdaptor;
@@ -49,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Transition animation to be triggered by pager
+        List<AnimationStep> animations = new ArrayList<>();
+        Person person = canvas.getPerson();
+        Background bg = canvas.getBackgroundDrawable();
+        animations.add(new BackgroundChange(getResources().getColor(R.color.spanishPink), person, bg));
+        animations.add(new BackgroundChange(getResources().getColor(R.color.cambridgeBlue), person, bg));
+        animations.add(new BackgroundChange(getResources().getColor(R.color.powderBlue), person, bg));
+
         stats = new ArrayList<>();
         stats.add(new IntegerStat("Age", Arrays.asList(70, 70, 45, 30, 43)));
         stats.add(new IntegerStat("Income", Arrays.asList(70000, 70000, 45000, 30000, 43000)));
@@ -56,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         adaptor = new StatsAdaptor(stats, this);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adaptor);
-
 
     }
 }
