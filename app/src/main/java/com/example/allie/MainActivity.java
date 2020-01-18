@@ -66,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
         adaptor = new StatsAdaptor(stats, this);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adaptor);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                animations.get(position).run();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 }

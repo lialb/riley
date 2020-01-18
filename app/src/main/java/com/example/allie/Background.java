@@ -25,7 +25,7 @@ public class Background implements CanvasDrawable {
     public void updateColor(int colorTo) {
         int colorFrom = paint.getColor();
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        colorAnimation.setDuration(1000); // milliseconds
+        colorAnimation.setDuration(300); // milliseconds
         colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animator) {

@@ -12,5 +12,5 @@ public abstract class AnimationStep {
         this.background = background;
     }
 
-    abstract void run();
+    public abstract void run();
 }

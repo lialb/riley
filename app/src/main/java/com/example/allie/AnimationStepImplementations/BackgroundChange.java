@@ -11,7 +11,7 @@ public class BackgroundChange extends AnimationStep {
         this.color = color;
     }
 
-    void run() {
+    public void run() {
         background.updateColor(color);
 
     }
