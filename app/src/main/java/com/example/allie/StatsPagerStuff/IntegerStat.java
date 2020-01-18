@@ -1,6 +1,8 @@
 package com.example.allie.StatsPagerStuff;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class IntegerStat extends AttrStats<Integer> {
@@ -10,7 +12,7 @@ public class IntegerStat extends AttrStats<Integer> {
     }
 
     public Integer getAverage() {
-        return this.dataPoints.get(0);
+        return (int) dataPoints.stream().mapToInt(Integer::intValue).average().getAsDouble();
     }
 
 }
