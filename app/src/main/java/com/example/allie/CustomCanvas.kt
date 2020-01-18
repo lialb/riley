@@ -2,6 +2,7 @@ package com.example.allie
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.util.AttributeSet
 import android.view.View
 import com.example.allie.AnimationStepImplementations.AnimationStep
@@ -25,6 +26,7 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
         // DRAW STUFF HERE
         background.draw(canvas)
         for (item in canvasDrawables) item.draw(canvas)
+        person.draw(canvas)
 
         invalidate()
     }

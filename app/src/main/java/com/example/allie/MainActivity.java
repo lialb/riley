@@ -3,22 +3,14 @@ package com.example.allie;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Path;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.example.allie.AnimationStepImplementations.AnimationStep;
-import com.example.allie.AnimationStepImplementations.BackgroundChange;
+import com.example.allie.AnimationStepImplementations.BackgroundStep;
 import com.example.allie.AnimationStepImplementations.ComboStep;
-import com.example.allie.AnimationStepImplementations.VisualizeAnimation;
+import com.example.allie.AnimationStepImplementations.GraphicStep;
 import com.example.allie.StatsPagerStuff.AttrStats;
 import com.example.allie.StatsPagerStuff.IntegerStat;
 import com.example.allie.StatsPagerStuff.StatsAdaptor;
@@ -40,32 +32,34 @@ public class MainActivity extends AppCompatActivity {
 
         canvas = findViewById(R.id.custom_canvas_view);
 
+        // Transition animation to be triggered by pager
+        List<AnimationStep> animations = new ArrayList<>();
+        Person person = canvas.getPerson();
+        Background bg = canvas.getBackgroundDrawable();
+        MoneyStackGraphic income = new MoneyStackGraphic(10, this);
+        canvas.addDrawable(income);
+
+
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Test button
+                person.start();
             }
         });
 
-        // Transition animation to be triggered by pager
-        List<AnimationStep> animations = new ArrayList<>();
-        Person person = canvas.getPerson();
-        Background bg = canvas.getBackgroundDrawable();
-        StackDrawable income = new StackDrawable(10, 60, R.drawable.money_stack, this);
-        canvas.addDrawable(income);
-
-        animations.add(new BackgroundChange(getResources().getColor(R.color.cambridgeBlue), person, bg));
+        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
 
         AnimationStep[] incomeStep = {
-            new VisualizeAnimation(income, person, bg),
-            new BackgroundChange(getResources().getColor(R.color.spanishPink), person, bg)
+            new GraphicStep(income, person, bg),
+            new BackgroundStep(getResources().getColor(R.color.spanishPink), person, bg)
         };
 
         animations.add(new ComboStep(incomeStep, person, bg));
 
-//        animations.add(new BackgroundChange(getResources().getColor(R.color.cambridgeBlue), person, bg));
-        animations.add(new BackgroundChange(getResources().getColor(R.color.powderBlue), person, bg));
+//        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
+        animations.add(new BackgroundStep(getResources().getColor(R.color.powderBlue), person, bg));
 
         stats = new ArrayList<>();
         stats.add(new IntegerStat("Age", Arrays.asList(70, 70, 45, 30, 43)));

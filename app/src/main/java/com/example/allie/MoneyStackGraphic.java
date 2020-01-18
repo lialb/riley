@@ -16,15 +16,16 @@ import com.example.allie.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StackDrawable implements CanvasDrawable {
+public class MoneyStackGraphic implements CanvasDrawable {
     List<Rect> rects = new ArrayList<>();
     Bitmap img;
     // Number of items to show on the stack
     int stackNum = 0;
     private Paint paint = new Paint();
 
-    public StackDrawable(int height, int verticalSpacing, int drawableID, Context context) {
+    public MoneyStackGraphic(int height, Context context) {
         // Hardcoded screen resolution
+        int verticalSpacing = 60;
         int size = 600;
         int x = (1316 - (size - 40)) / 2;
         int y = 1500;
@@ -34,7 +35,7 @@ public class StackDrawable implements CanvasDrawable {
                     x + size, y + size - verticalSpacing * i));
         }
 
-        img = BitmapFactory.decodeResource(context.getResources(), drawableID);
+        img = BitmapFactory.decodeResource(context.getResources(), R.drawable.money_stack);
         paint.setAntiAlias(true);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);

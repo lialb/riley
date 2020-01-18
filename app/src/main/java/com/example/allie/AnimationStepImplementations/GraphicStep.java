@@ -4,10 +4,10 @@ import com.example.allie.Background;
 import com.example.allie.CanvasDrawable;
 import com.example.allie.Person;
 
-public class VisualizeAnimation extends AnimationStep {
+public class GraphicStep extends AnimationStep {
     CanvasDrawable drawable;
 
-    public VisualizeAnimation(CanvasDrawable drawable, Person person, Background background) {
+    public GraphicStep(CanvasDrawable drawable, Person person, Background background) {
         super(person, background);
         this.drawable = drawable;
     }
