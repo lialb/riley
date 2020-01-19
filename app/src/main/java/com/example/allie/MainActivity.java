@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
 
-        canvas.addDrawable(incomeGraphic);
+        canvas.addDrawable(spendingGraphic);
+        spendingGraphic.startAnimation();
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
