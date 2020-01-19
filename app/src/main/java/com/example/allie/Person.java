@@ -102,7 +102,6 @@ public class Person {
         });
 
         animator.start();
-
     }
 
     public void draw(Canvas canvas) {
