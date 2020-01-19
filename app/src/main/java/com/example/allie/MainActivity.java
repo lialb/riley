@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         AnimationStep[] spendingStep = {
-            new GraphicStep(spendingGraphic, person, bg, canvas),
-            new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg)
+                new GraphicStep(spendingGraphic, person, bg, canvas),
+                new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg)
         };
 
         AnimationStep[] incomeStep = {
-            new GraphicStep(incomeGraphic, person, bg, canvas),
-            new BackgroundStep(this.getColor(R.color.spanishPink), person, bg)
+                new GraphicStep(incomeGraphic, person, bg, canvas),
+                new BackgroundStep(this.getColor(R.color.spanishPink), person, bg)
         };
 
 
