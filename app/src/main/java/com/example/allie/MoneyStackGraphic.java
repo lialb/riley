@@ -33,7 +33,7 @@ public class MoneyStackGraphic implements CanvasDrawable {
         int x = 450;
         int y = 1500;
 
-        generateRects(height, verticalSpacing, size, x, y);
+        generateRects(height, verticalSpacing, size, x, y, 0);
         setImages(R.drawable.money_stack, R.drawable.money_stack, context);
 
     }
@@ -43,10 +43,10 @@ public class MoneyStackGraphic implements CanvasDrawable {
         topImage = BitmapFactory.decodeResource(context.getResources(), top);
     }
 
-    void generateRects(int height, int verticalSpacing, int size, int x, int y) {
+    void generateRects(int height, int verticalSpacing, int size, int x, int y, int y_offset) {
         for (int i = 0; i < height; ++i) {
-            rects.add(new Rect(x, y - verticalSpacing * i,
-                    x + size, y + size - verticalSpacing * i));
+            rects.add(new Rect(x, y - verticalSpacing * i - y_offset,
+                    x + size, y + size - verticalSpacing * i - y_offset));
         }
     }
 
