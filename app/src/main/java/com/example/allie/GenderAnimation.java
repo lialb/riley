@@ -22,14 +22,37 @@ public class GenderAnimation implements CanvasDrawable {
     private Paint paint = new Paint();
 
     GenderAnimation(int number, Context context) {
-        final int leftX = 40, leftY = 500, rightX = 1040, rightY = 500;
+        final int leftX = 40, leftY = 50, rightX = 1040, rightY = 1150;
+        int row = 0, i = 0;
+        boolean alt = false;
 
         maleNumber = number;
-        for (int i = 0; i < maleNumber; ++i) {
-            rects.add(new Rect(leftX + 100 * i, leftY, leftX + 100 * (i + 1), leftY + 100));
+        for (int count = 0; count < maleNumber; ++count) {
+            if (count % 10 == 0) {
+                ++row;
+                i = 0;
+                alt = !alt;
+            }
+            if (!alt) {
+                rects.add(new Rect(leftX + 100 * i, leftY + row * 100, leftX + 100 * (i + 1), leftY + 100 * (row + 1)));
+            } else {
+                rects.add(new Rect(rightX - 100 * (i + 1), leftY + row * 100, rightX - 100 * i, leftY + 100 * (row + 1)));
+            }
+            ++i;
         }
-        for (int i = 0; i < 10 - maleNumber; ++i) {
-            rects.add(new Rect(rightX - 100 * (i + 1), rightY, rightX - 100 * i, rightY + 100));
+        row = 0;
+        for (int count = 0; count < 100 - maleNumber; ++count) {
+            if (count % 10 == 0) {
+                ++row;
+                i = 0;
+                alt = !alt;
+            }
+            if (!alt) {
+                rects.add(new Rect(rightX - 100 * (i + 1), rightY - row * 100, rightX - 100 * i, rightY - 100 * (row - 1)));
+            } else {
+                rects.add(new Rect(leftX + 100 * i, rightY - row * 100, leftX + 100 * (i + 1), rightY - 100 * (row - 1)));
+            }
+            ++i;
         }
         maleIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.male_icon);
         femaleIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.female_icon);
@@ -58,7 +81,7 @@ public class GenderAnimation implements CanvasDrawable {
             if (i < maleNumber) {
                 canvas.drawBitmap(maleIcon, null, maleRect, paint);
             }
-            if (i + maleNumber < 10) {
+            if (i + maleNumber < 100) {
                 Rect femaleRect = rects.get(i + maleNumber);
                 canvas.drawBitmap(femaleIcon, null, femaleRect, paint);
             }

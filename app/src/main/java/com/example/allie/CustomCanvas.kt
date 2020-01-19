@@ -11,7 +11,7 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
 //    private val person = Person(100, 300, context)
 //    private val p2 = Person(200, 400, context)
 //    private val eyes = Eyes(100, 300, context)
-    private val gender = GenderAnimation(5, context)
+    private val gender = GenderAnimation(69, context)
 
     // Called when the view should render its content.
     override fun onDraw(canvas: Canvas?) {
