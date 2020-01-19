@@ -12,6 +12,7 @@ import com.example.allie.AnimationStepImplementations.BackgroundStep;
 import com.example.allie.AnimationStepImplementations.ComboStep;
 import com.example.allie.AnimationStepImplementations.GraphicStep;
 import com.example.allie.StatsPagerStuff.AttrStats;
+import com.example.allie.StatsPagerStuff.CategStat;
 import com.example.allie.StatsPagerStuff.IntegerStat;
 import com.example.allie.StatsPagerStuff.SpendingGraphic;
 import com.example.allie.StatsPagerStuff.StatsAdaptor;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         stats = new ArrayList<>();
 
         Random rand = new Random();
+        rand.setSeed(1);
         ArrayList<Integer> age = new ArrayList();
 
         for (int i = 0; i < 1000;  i++) {
@@ -87,15 +89,26 @@ public class MainActivity extends AppCompatActivity {
             new_age = Math.min(100,new_age);
             age.add(new_age);
         }
-        ArrayList income = new ArrayList();
+        ArrayList<Integer> income = new ArrayList();
         for (int i = 0; i < 1000;  i++) {
-            income.add(((int)(Math.random() * 100000)));
+            int new_income = (int) (rand.nextGaussian() * 15 + 65);
+            new_income = Math.min(250, new_income);
+            new_income = Math.max(15, new_income);
+            income.add(new_income);
+        }
+        ArrayList<String> genders = new ArrayList<>();
+        for (int i : income) {
+            if ( i > 65) {
+                genders.add("m");
+            } else {
+                genders.add("f");
+            }
         }
 
-        age.sort(Integer::compareTo);
         stats.add(new IntegerStat("Age - ", age));
         stats.add(new IntegerStat("Income - ", income));
         stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
+        stats.add(new CategStat("Gender - ", genders ));
         adaptor = new StatsAdaptor(stats, this);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(adaptor);
