@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Test button
             person.setWalking(true);
+            person.move(13000, 800);
             }
         });
 

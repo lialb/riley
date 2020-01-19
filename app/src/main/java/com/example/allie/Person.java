@@ -1,5 +1,7 @@
 package com.example.allie;
 
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,11 @@ public class Person {
     private Paint paint = new Paint();
     private AnimationDrawable person;
 
+    int x;
+    int y;
+    int width = 400;
+    int height = 700;
+
     private List<Bitmap> frames = new ArrayList<>();
     private Bitmap standing;
     boolean isWalking = false;
@@ -29,7 +38,10 @@ public class Person {
     Timer walkingTimer;
 
     Person(int x, int y, Context context) {
-        rect = new Rect(x, y, x + 400, y + 700);
+        this.x = x;
+        this.y = y;
+
+        rect = new Rect(x, y, x + width, y + height);
         paint.setAntiAlias(true);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
@@ -62,11 +74,30 @@ public class Person {
                 public void run() {
                     frameIndex = (frameIndex + 1) % frames.size();
                 }
-            }, 0, 200);
+            }, 0, 100);
         } else if (this.isWalking && !startWalking) {
             isWalking = false;
             walkingTimer.cancel();
         }
+    }
+
+    public void move(int length, final int xCoord) {
+        PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", this.x, xCoord);
+        ValueAnimator animator = new ValueAnimator();
+        animator.setValues(duration);
+        animator.setDuration(length);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int newX = (int) animation.getAnimatedValue();
+                rect = new Rect(newX, y, newX + width, y + height);
+                if (newX == xCoord) setWalking(false);
+            }
+        });
+
+        animator.start();
+
     }
 
     public void draw(Canvas canvas) {
