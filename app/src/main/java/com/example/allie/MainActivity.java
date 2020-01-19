@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
+        GenderAnimation genderAnimation = new GenderAnimation(69, this);
+
 
         canvas.addDrawable(spendingGraphic);
         spendingGraphic.startAnimation();
@@ -59,24 +61,29 @@ public class MainActivity extends AppCompatActivity {
 
         AnimationStep[] spendingStep = {
             new GraphicStep(spendingGraphic, person, bg, canvas),
-            new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg)
+            new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg)
         };
 
         AnimationStep[] incomeStep = {
             new GraphicStep(incomeGraphic, person, bg, canvas),
-            new BackgroundStep(getResources().getColor(R.color.spanishPink), person, bg)
+            new BackgroundStep(this.getColor(R.color.spanishPink), person, bg)
         };
 
 
         AnimationStep[] buisnessSizeStep = {
                 new GraphicStep(businessStackGraphic, person, bg, canvas),
-                new BackgroundStep(getResources().getColor(R.color.powderBlue), person, bg)
+                new BackgroundStep(this.getColor(R.color.powderBlue), person, bg)
+        };
+
+        AnimationStep[] genderStep = {
+                new GraphicStep(genderAnimation, person, bg, canvas),
+                new BackgroundStep(this.getColor(R.color.darkMediumGray), person, bg)
         };
 
         animations.add(new ComboStep(spendingStep, person, bg));
         animations.add(new ComboStep(incomeStep, person, bg));
         animations.add(new ComboStep(buisnessSizeStep, person, bg));
-
+        animations.add(new ComboStep(genderStep, person, bg));
         stats = new ArrayList<>();
 
         Random rand = new Random();
@@ -105,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        stats.add(new IntegerStat("Age - ", age));
-        stats.add(new IntegerStat("Income - ", income));
         stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
+        stats.add(new IntegerStat("Income - ", income));
+        stats.add(new IntegerStat("Age - ", age));
         stats.add(new CategStat("Gender - ", genders ));
         adaptor = new StatsAdaptor(stats, this);
         viewPager = findViewById(R.id.view_pager);
