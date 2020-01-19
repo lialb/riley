@@ -22,10 +22,11 @@ public class GenderAnimation implements CanvasDrawable {
     private Paint paint = new Paint();
 
     GenderAnimation(int number, Context context) {
-        final int leftX = 40, leftY = 50, rightX = 1312-40, rightY = 1312-30; //screen res 2560x1312
+        int leftX = 40, leftY = 50, rightX = 1312-40, rightY = 1312-30; //screen res 2560x1312
         final int gridDim = 10;
         final int imageWidth = (rightX-leftX)/gridDim;
-        final int imageHieght = (rightX-leftX)/gridDim;
+        final int imageHieght = (rightY-leftY)/gridDim;
+        rightY += imageHieght;
         int row = 0, i = 0;
         boolean alt = false;
 
