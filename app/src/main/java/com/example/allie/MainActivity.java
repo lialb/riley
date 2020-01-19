@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Person person = canvas.getPerson();
         Background bg = canvas.getBackgroundDrawable();
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(6, this);
-        BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
+        BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this, person);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this, person);
         String statString = stats.get(3).getAverage().toString();
         String genderString = statString.substring(statString.length()-6, statString.length()-2);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         AnimationStep[] buisnessSizeStep = {
                 new GraphicStep(businessStackGraphic, person, bg, canvas),
                 new BackgroundStep(this.getColor(R.color.powderBlue), person, bg),
-                rightMove
+//                rightMove
         };
 
         AnimationStep[] genderStep = {

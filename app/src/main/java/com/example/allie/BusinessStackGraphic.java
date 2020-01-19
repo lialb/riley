@@ -1,5 +1,6 @@
 package com.example.allie;
 
+import android.animation.AnimatorSet;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -18,29 +19,41 @@ public class BusinessStackGraphic extends MoneyStackGraphic {
     int x = (1316 - (size - 40)) / 2;
     int y = 1700;
     int height;
+    Person person;
 
-    BusinessStackGraphic(int height, Context context) {
+    BusinessStackGraphic(int height, Context context, Person person) {
         this.height = height;
-        generateRects(height, verticalSpacing, size, x, y, -1000);
+        generateRects(height, verticalSpacing, size, x, y, -1120);
         setImages(R.drawable.skyscraper, R.drawable.shop_small, context);
         stackNum = height;
         this.context = context;
+        this.person = person;
     }
 
     public void startAnimation() {
-        PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", -1200, 0);
+        PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", -1120, 0);
 
-        ValueAnimator animator = new ValueAnimator();
-        animator.setValues(duration);
-        animator.setDuration(2000);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator buildingRising = new ValueAnimator();
+        buildingRising.setValues(duration);
+        buildingRising.setDuration(4000);
+        buildingRising.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 rects.clear();
                 generateRects(height, verticalSpacing, size, x, y, (int) animation.getAnimatedValue());
+                int newY = y - verticalSpacing * stackNum - (int) animation.getAnimatedValue() + 600;
+                person.teleport(person.x, newY);
             }
         });
-        animator.start();
+
+        person.setHeight(200);
+        person.teleport(-200, 1800);
+
+        ValueAnimator walking = person.generateAnimator(2000, 550);
+
+        AnimatorSet set = new AnimatorSet();
+        set.playSequentially(walking, buildingRising);
+        set.start();
     }
 
     public void drawText(Canvas canvas) {

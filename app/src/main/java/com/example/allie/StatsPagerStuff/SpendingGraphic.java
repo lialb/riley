@@ -89,7 +89,6 @@ public class SpendingGraphic implements CanvasDrawable {
                 walletLocation = new Rect(walletX, walletY, walletX + size, walletY + size);
                 frontWalletLocation = new Rect(walletX, walletY, walletX + size, walletY + size - 100);
                 dollarLocation = new Rect(walletX + 50, walletY + 80, walletX + 500 + 50, walletY + 270 + 80);
-
             }
         });
 

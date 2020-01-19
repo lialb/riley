@@ -23,7 +23,7 @@ public class Person {
     private Bitmap img;
     private Rect rect;
     private Paint paint = new Paint();
-    private AnimationDrawable person;
+    ValueAnimator currentAnimator = null;
 
     int x;
     int y;
@@ -87,8 +87,12 @@ public class Person {
     }
 
     public void teleport(int x, int y) {
+        // Prevents skipping ahead from getting person to unwanted places
+        clearAnimations();
+
         this.x = x;
         this.y = y;
+        rect = new Rect(x, y, x + width, y + height);
     }
 
     public void move(int length, final int xCoord) {
@@ -96,7 +100,14 @@ public class Person {
         generateAnimator(length, xCoord).start();
     }
 
+    // Stops animators,
+    public void clearAnimations() {
+        if (currentAnimator != null) currentAnimator.end();
+        setWalking(false);
+    }
+
     public ValueAnimator generateAnimator(int length, int xCoord) {
+        clearAnimations();
         PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", this.x, xCoord);
         ValueAnimator animator = new ValueAnimator();
         animator.setValues(duration);
@@ -106,10 +117,13 @@ public class Person {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int newX = (int) animation.getAnimatedValue();
+                x = newX;
                 rect = new Rect(newX, y, newX + width, y + height);
                 if (newX == xCoord) setWalking(false);
             }
         });
+        currentAnimator = animator;
+        setWalking(true);
         return animator;
     }
 
