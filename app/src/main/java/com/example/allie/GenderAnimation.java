@@ -22,11 +22,11 @@ public class GenderAnimation implements CanvasDrawable {
     private Paint paint = new Paint();
 
     GenderAnimation(int number, Context context) {
-        int leftX = 40, leftY = 50, rightX = 1312-40, rightY = 1312-30; //screen res 2560x1312
+        int leftX = 40, leftY = 50, rightX = 1312 - 40, rightY = 1312 - 30; //screen res 2560x1312
         final int gridDim = 10;
-        final int imageWidth = (rightX-leftX)/gridDim;
-        final int imageHieght = (rightY-leftY)/gridDim;
-        rightY += imageHieght;
+        final int imageWidth = (rightX - leftX) / gridDim;
+        final int imageHeight = (rightY - leftY) / gridDim;
+        rightY += imageHeight;
         int row = 0, i = 0;
         boolean alt = false;
 
@@ -38,9 +38,9 @@ public class GenderAnimation implements CanvasDrawable {
                 alt = !alt;
             }
             if (!alt) {
-                rects.add(new Rect(leftX + imageWidth * i, leftY + row * imageHieght, leftX + imageWidth * (i + 1), leftY + imageHieght * (row + 1)));
+                rects.add(new Rect(leftX + imageWidth * i, leftY + row * imageHeight, leftX + imageWidth * (i + 1), leftY + imageHeight * (row + 1)));
             } else {
-                rects.add(new Rect(rightX - imageWidth * (i + 1), leftY + row * imageHieght, rightX - imageWidth * i, leftY + imageHieght * (row + 1)));
+                rects.add(new Rect(rightX - imageWidth * (i + 1), leftY + row * imageHeight, rightX - imageWidth * i, leftY + imageHeight * (row + 1)));
             }
             ++i;
         }
@@ -52,9 +52,9 @@ public class GenderAnimation implements CanvasDrawable {
                 alt = !alt;
             }
             if (!alt) {
-                rects.add(new Rect(rightX - imageWidth * (i + 1), rightY - row * imageHieght, rightX - imageWidth * i, rightY - imageHieght * (row - 1)));
+                rects.add(new Rect(rightX - imageWidth * (i + 1), rightY - row * imageHeight, rightX - imageWidth * i, rightY - imageHeight * (row - 1)));
             } else {
-                rects.add(new Rect(leftX + imageWidth * i, rightY - row * imageHieght, leftX + imageWidth * (i + 1), rightY - imageHieght * (row - 1)));
+                rects.add(new Rect(leftX + imageWidth * i, rightY - row * imageHeight, leftX + imageWidth * (i + 1), rightY - imageHeight * (row - 1)));
             }
             ++i;
         }
