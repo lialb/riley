@@ -25,7 +25,7 @@ public class LandingActivity extends Activity {
         RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), avatar);
         roundDrawable.setCircular(true);
         TextView t = (TextView) findViewById(R.id.intro);
-        String next = "This is <font color='#1ec4b4'>Riley</font>, your average customer.";
+        String next = "This is <font color='#1ec4b4'>Riley</font>, your everyday customer.";
         t.setText(Html.fromHtml( next));
         port.setImageDrawable(roundDrawable);
     }

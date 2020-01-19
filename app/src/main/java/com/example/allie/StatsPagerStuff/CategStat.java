@@ -32,8 +32,8 @@ public class CategStat extends AttrStats<String> {
     public String getAverage() {
         long ls = this.dataPoints.stream().filter(line -> !"Male".equals(line)).count();
         long ms = this.dataPoints.stream().filter(line -> "Male".equals(line)).count();
-        if (ms > ls) return "Male " + (ms/(ls+ms)) + "%" ;
-        else return "Female " + ((double)ls/(ls+ms))*100 + "%";
+        if (ms > ls) return String.format("Male  %1.2f%%", ((double)ms/(ls+ms))*100);
+        else return String.format("Female  %1.2f%%", ((double)ls/(ls+ms))*100);
     }
 
     public Map<String, Integer> makeHistogram() {
@@ -96,7 +96,7 @@ public class CategStat extends AttrStats<String> {
         chart.setDrawHoleEnabled(true);
         chart.setMinAngleForSlices(30);
 
-        chart.setHoleColor(context.getColor(R.color.cardview_dark_background));
+        chart.setHoleColor(context.getColor(R.color.defaultBackground));
 
         Legend l = chart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);

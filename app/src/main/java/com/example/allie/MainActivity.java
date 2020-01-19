@@ -11,6 +11,7 @@ import com.example.allie.AnimationStepImplementations.AnimationStep;
 import com.example.allie.AnimationStepImplementations.BackgroundStep;
 import com.example.allie.AnimationStepImplementations.ComboStep;
 import com.example.allie.AnimationStepImplementations.GraphicStep;
+import com.example.allie.AnimationStepImplementations.PersonStep;
 import com.example.allie.StatsPagerStuff.AttrStats;
 import com.example.allie.StatsPagerStuff.CategStat;
 import com.example.allie.StatsPagerStuff.IntegerStat;
@@ -42,33 +43,56 @@ public class MainActivity extends AppCompatActivity {
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(6, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
-        String genderString = stats.get(3).getAverage().toString();
-        genderString = genderString.substring(genderString.length()-5, genderString.length()-2);
-        GenderAnimation genderAnimation = new GenderAnimation((int) Double.parseDouble(genderString), this);
+        String statString = stats.get(3).getAverage().toString();
+        String genderString = statString.substring(statString.length()-6, statString.length()-2);
+        double fraction = Double.parseDouble(genderString);
+
+        GenderAnimation genderAnimation = new GenderAnimation((int) fraction, this);
 
 
         canvas.addDrawable(incomeGraphic);
         incomeGraphic.startAnimation();
 
+//        Button button = findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Test button
+//            person.setWalking(true);
+//            person.teleport(-30, 1000);
+//            person.move(2000, 1200);
+//            }
+//        });
+
+//        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
+
+
+        PersonStep rightMove = new PersonStep(person);
+        rightMove.addMove(2000,1000);
+
         AnimationStep[] spendingStep = {
-            new GraphicStep(spendingGraphic, person, bg, canvas),
-            new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg)
+                new GraphicStep(spendingGraphic, person, bg, canvas),
+                new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg),
+                rightMove
         };
 
         AnimationStep[] incomeStep = {
-            new GraphicStep(incomeGraphic, person, bg, canvas),
-            new BackgroundStep(this.getColor(R.color.spanishPink), person, bg)
+                new GraphicStep(incomeGraphic, person, bg, canvas),
+                new BackgroundStep(this.getColor(R.color.spanishPink), person, bg),
+                rightMove
         };
 
 
         AnimationStep[] buisnessSizeStep = {
                 new GraphicStep(businessStackGraphic, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.powderBlue), person, bg)
+                new BackgroundStep(this.getColor(R.color.powderBlue), person, bg),
+                rightMove
         };
 
         AnimationStep[] genderStep = {
                 new GraphicStep(genderAnimation, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.defaultBackground), person, bg)
+                new BackgroundStep(this.getColor(R.color.defaultBackground), person, bg),
+                rightMove
         };
 
         animations.add(new ComboStep(incomeStep, person, bg));
@@ -119,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ArrayList<String> genders = new ArrayList<>();
         for (int i : income) {
-            if ( i > 65) {
+            if ( i > 60) {
                 genders.add("Male");
             } else {
                 genders.add("Female");
