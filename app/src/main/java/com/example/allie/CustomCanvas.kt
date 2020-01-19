@@ -10,7 +10,7 @@ import com.example.allie.AnimationStepImplementations.AnimationStep
 class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : View(context, attrs, defStyleAttr) {
 
-    private val person = Person(100, 300, context)
+    private val person = Person(80, 1000, context)
     private val background = Background(context)
 
     private val canvasDrawables: MutableList<CanvasDrawable> = ArrayList()

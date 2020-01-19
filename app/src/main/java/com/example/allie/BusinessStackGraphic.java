@@ -19,6 +19,7 @@ public class BusinessStackGraphic extends MoneyStackGraphic {
         generateRects(height, verticalSpacing, size, x, y, -1000);
         setImages(R.drawable.skyscraper, R.drawable.shop_small, context);
         stackNum = height;
+        this.context = context;
     }
 
     public void startAnimation() {

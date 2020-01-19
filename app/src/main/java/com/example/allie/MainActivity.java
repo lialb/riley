@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         final List<AnimationStep> animations = new ArrayList<>();
         Person person = canvas.getPerson();
         Background bg = canvas.getBackgroundDrawable();
-        MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
+        MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(6, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
         String genderString = stats.get(3).getAverage().toString();
@@ -49,20 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         canvas.addDrawable(incomeGraphic);
         incomeGraphic.startAnimation();
-
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Test button
-            person.setWalking(true);
-            person.teleport(-30, 1000);
-            person.move(2000, 1200);
-            }
-        });
-
-//        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
-
 
         AnimationStep[] spendingStep = {
             new GraphicStep(spendingGraphic, person, bg, canvas),

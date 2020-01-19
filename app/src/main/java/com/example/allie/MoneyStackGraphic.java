@@ -10,8 +10,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MoneyStackGraphic implements CanvasDrawable {
     List<Rect> rects = new ArrayList<>();
@@ -19,13 +21,14 @@ public class MoneyStackGraphic implements CanvasDrawable {
     // Number of items to show on the stack
     int stackNum = 0;
     private Paint paint = new Paint();
+    Context context;
+    int textDollars = 0;
 
     public MoneyStackGraphic() {}
 
     public MoneyStackGraphic(int height, Context context) {
         paint.setAntiAlias(true);
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.STROKE);
+        this.context = context;
 
         // Hardcoded screen resolution
         int verticalSpacing = 60;
@@ -35,7 +38,22 @@ public class MoneyStackGraphic implements CanvasDrawable {
 
         generateRects(height, verticalSpacing, size, x, y, 0);
         setImages(R.drawable.money_stack, R.drawable.money_stack, context);
+    }
 
+    void drawText(Canvas canvas) {
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(130);
+        paint.setTypeface(context.getResources().getFont(R.font.comfortaa_light));
+        canvas.drawText("Riley earns ", 200, 350, paint);
+
+        paint.setColor(context.getResources().getColor(R.color.primaryLightTurq));
+        paint.setTextSize(200);
+        canvas.drawText("$" + NumberFormat.getNumberInstance(Locale.US).format(textDollars), 300, 550, paint);
+
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(100);
+        canvas.drawText("per year", 550, 650, paint);
     }
 
     void setImages(int base, int top, Context context) {
@@ -52,20 +70,24 @@ public class MoneyStackGraphic implements CanvasDrawable {
 
     public void startAnimation() {
         PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", 0, rects.size());
+        PropertyValuesHolder dollars = PropertyValuesHolder.ofInt("dollars", 0, 64000);
 
         ValueAnimator animator = new ValueAnimator();
-        animator.setValues(duration);
+        animator.setValues(duration, dollars);
         animator.setDuration(1500);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-            stackNum = (int) animation.getAnimatedValue();
+                textDollars = (int) animation.getAnimatedValue("dollars");
+                stackNum = (int) animation.getAnimatedValue("stackNum");
             }
         });
+
         animator.start();
     }
 
     public void draw(Canvas canvas) {
+        drawText(canvas);
         for (int i = 0; i < stackNum; ++i) {
             Rect rect = rects.get(i);
 
