@@ -30,10 +30,25 @@ public class CategStat extends AttrStats<String> {
 
     @Override
     public String getAverage() {
-        long ls = this.dataPoints.stream().filter(line -> !"Male".equals(line)).count();
-        long ms = this.dataPoints.stream().filter(line -> "Male".equals(line)).count();
-        if (ms > ls) return String.format("Male  %1.2f%%", ((double)ms/(ls+ms))*100);
-        else return String.format("Female  %1.2f%%", ((double)ls/(ls+ms))*100);
+        long ls = this.dataPoints.stream().filter(line -> !this.dataPoints.get(0).toString().equals(line)).count();
+        long ms = this.dataPoints.stream().filter(line -> this.dataPoints.get(0).toString().equals(line)).count();
+        if (this.name .equals( "Gender - ")) {
+            if (ms > ls)
+                return String.format("%s  %1.2f%%", this.dataPoints.get(0), (double) ms / (ls + ms) * 100);
+            else
+                return String.format("%s  %1.2f%%", this.dataPoints.get(0), ((double) ls / (ls + ms)) * 100);
+        } else {
+            Map<String, Integer> histo = makeHistogram();
+            int max=0;
+            String maxS = "";
+            for (String s: histo.keySet()) {
+                if (histo.get(s) > max) {
+                    max = histo.get(s);
+                    maxS = s;
+                }
+            }
+            return maxS;
+        }
     }
 
     public Map<String, Integer> makeHistogram() {
