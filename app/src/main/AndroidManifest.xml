@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/android_icon_96x96"
-        android:label="Meet Riley!"
+        android:label="Riley"
         android:roundIcon="@mipmap/android_icon_96x96"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

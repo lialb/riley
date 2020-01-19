@@ -19,6 +19,7 @@ public class GenderAnimation implements CanvasDrawable {
     private List<Rect> rects = new ArrayList<>();
     private boolean first = true;
 
+    private Context context;
     private Paint paint = new Paint();
 
     GenderAnimation(int number, Context context) {
@@ -29,6 +30,8 @@ public class GenderAnimation implements CanvasDrawable {
         rightY += imageHeight;
         int row = 0, i = 0;
         boolean alt = false;
+
+        this.context = context;
 
         maleNumber = number;
         for (int count = 0; count < maleNumber; ++count) {
@@ -79,20 +82,42 @@ public class GenderAnimation implements CanvasDrawable {
         });
         animator.start();
     }
+
     public void draw(Canvas canvas) {
+        int males = 0;
+        int females = 0;
         for (int i = 0; i < dotNumber; ++i) {
             Rect maleRect = rects.get(i);
             if (i < maleNumber) {
                 canvas.drawBitmap(maleIcon, null, maleRect, paint);
+                males++;
             }
             if (i + maleNumber < 100) {
                 Rect femaleRect = rects.get(i + maleNumber);
                 canvas.drawBitmap(femaleIcon, null, femaleRect, paint);
+                females++;
             }
         }
+
+        drawText(canvas, males, females);
+
         if (first) {
             first = false;
             startAnimation();
         }
+    }
+
+    public void drawText(Canvas canvas, int male, int female) {
+        paint.setColor(context.getColor(R.color.primaryLightTurq));
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(250);
+        paint.setTypeface(context.getResources().getFont(R.font.comfortaa_light));
+        int midPoint = canvas.getWidth() / 2;
+        canvas.drawText("" + male, midPoint - 320, 1900, paint);
+        paint.setColor(Color.BLACK);
+        canvas.drawText(":", midPoint, 1900, paint);
+        paint.setColor(context.getColor(R.color.spanishPink));
+        canvas.drawText("" + female, midPoint + 80, 1900, paint);
+
     }
 }

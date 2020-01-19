@@ -102,7 +102,9 @@ public class Person {
 
     // Stops animators,
     public void clearAnimations() {
-        if (currentAnimator != null) currentAnimator.end();
+        if (currentAnimator != null) {
+            currentAnimator.cancel();
+        }
         setWalking(false);
     }
 

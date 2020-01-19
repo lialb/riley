@@ -30,12 +30,18 @@ public class BusinessStackGraphic extends MoneyStackGraphic {
         this.person = person;
     }
 
+    void reset() {
+        rects.clear();
+        generateRects(height, verticalSpacing, size, x, y, -1120);
+    }
+
     public void startAnimation() {
+        reset();
         PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", -1120, 0);
 
         ValueAnimator buildingRising = new ValueAnimator();
         buildingRising.setValues(duration);
-        buildingRising.setDuration(4000);
+        buildingRising.setDuration(1000);
         buildingRising.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -59,14 +65,20 @@ public class BusinessStackGraphic extends MoneyStackGraphic {
     public void drawText(Canvas canvas) {
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(70);
-        paint.setTypeface(context.getResources().getFont(R.font.comfortaa_light));
-        canvas.drawText("Businesses you interact with ", 50, 250, paint);
-        canvas.drawText("are considered", 150, 350, paint);
-
-        paint.setColor(context.getResources().getColor(R.color.primaryRed));
         paint.setTextSize(100);
-        canvas.drawText("large enterprises", 300, 500, paint);
+        paint.setTypeface(context.getResources().getFont(R.font.comfortaa_light));
+        canvas.drawText("Riley delivers", 100, 250, paint);
+
+        paint.setTextSize(120);
+        paint.setColor(context.getResources().getColor(R.color.primaryRed));
+        canvas.drawText("insights", 400, 380, paint);
+
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(70);
+
+        canvas.drawText("into your personal business", 200, 480, paint);
+
 
     }
 }

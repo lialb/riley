@@ -76,6 +76,10 @@ public class SpendingGraphic implements CanvasDrawable {
 
     @Override
     public void startAnimation() {
+
+        billAngle = 0;
+        dollarsText = 0;
+
         PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", 2000, 1200);
 
         ValueAnimator walletUpAnimation = new ValueAnimator();
@@ -105,11 +109,11 @@ public class SpendingGraphic implements CanvasDrawable {
             }
         });
 
-        person.teleport(-300, 1000);
         person.setHeight(2000);
-        ValueAnimator personAnimation = person.generateAnimator(500, -300);
+        person.teleport(-300, 1000);
+//        ValueAnimator personAnimation = person.generateAnimator(500, -300);
         AnimatorSet s = new AnimatorSet();
-        s.play(dollarFan).after(walletUpAnimation).after(personAnimation);
+        s.playSequentially(walletUpAnimation, dollarFan);
         s.start();
     }
 
@@ -118,7 +122,7 @@ public class SpendingGraphic implements CanvasDrawable {
         paint.setStyle(Paint.Style.FILL);
         paint.setTextSize(100);
         paint.setTypeface(context.getResources().getFont(R.font.comfortaa_light));
-        canvas.drawText("Riley typically spends ", 100, 350, paint);
+        canvas.drawText("Riley spends ", 100, 350, paint);
 
         paint.setColor(context.getResources().getColor(R.color.primaryLightTurq));
         paint.setTextSize(200);
@@ -126,6 +130,6 @@ public class SpendingGraphic implements CanvasDrawable {
 
         paint.setColor(Color.BLACK);
         paint.setTextSize(85);
-        canvas.drawText("per entrance", 550, 650, paint);
+        canvas.drawText("per visit", 550, 650, paint);
     }
 }
