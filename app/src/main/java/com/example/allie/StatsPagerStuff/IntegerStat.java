@@ -105,7 +105,7 @@ public class IntegerStat extends AttrStats<Integer> {
         chart.setDrawHoleEnabled(true);
         chart.setMinAngleForSlices(30);
 
-        chart.setHoleColor(context.getColor(R.color.cardview_dark_background));
+        chart.setHoleColor(context.getColor(R.color.defaultBackground));
 
         Legend l = chart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
