@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> genders = new ArrayList<>();
         for (int i : income) {
             if ( i > 65) {
-                genders.add("m");
+                genders.add("Male");
             } else {
-                genders.add("f");
+                genders.add("Female");
             }
         }
 
