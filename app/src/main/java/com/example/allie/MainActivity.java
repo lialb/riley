@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         GenderAnimation genderAnimation = new GenderAnimation((int) Double.parseDouble(genderString), this);
 
 
-        canvas.addDrawable(spendingGraphic);
-        spendingGraphic.startAnimation();
+        canvas.addDrawable(incomeGraphic);
+        incomeGraphic.startAnimation();
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 new BackgroundStep(this.getColor(R.color.darkMediumGray), person, bg)
         };
 
-        animations.add(new ComboStep(spendingStep, person, bg));
         animations.add(new ComboStep(incomeStep, person, bg));
+        animations.add(new ComboStep(spendingStep, person, bg));
         animations.add(new ComboStep(buisnessSizeStep, person, bg));
         animations.add(new ComboStep(genderStep, person, bg));
 
