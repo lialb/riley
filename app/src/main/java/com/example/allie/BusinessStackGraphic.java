@@ -4,8 +4,13 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.example.allie.MoneyStackGraphic;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class BusinessStackGraphic extends MoneyStackGraphic {
     int verticalSpacing = 400;
@@ -36,5 +41,19 @@ public class BusinessStackGraphic extends MoneyStackGraphic {
             }
         });
         animator.start();
+    }
+
+    public void drawText(Canvas canvas) {
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(70);
+        paint.setTypeface(context.getResources().getFont(R.font.comfortaa_light));
+        canvas.drawText("Businesses you interact with ", 50, 250, paint);
+        canvas.drawText("are considered", 150, 350, paint);
+
+        paint.setColor(context.getResources().getColor(R.color.primaryRed));
+        paint.setTextSize(100);
+        canvas.drawText("large enterprises", 300, 500, paint);
+
     }
 }

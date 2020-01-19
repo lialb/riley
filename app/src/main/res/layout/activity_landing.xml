@@ -27,31 +27,33 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
+        android:id="@+id/riley"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="20dp"
         android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/intro"
+        android:layout_margin="20dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
-        android:id="@+id/riley"
-        />
+        app:layout_constraintTop_toBottomOf="@id/intro" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
         android:background="@color/colorPrimary"
         android:onClick="loadStats"
+        android:padding="10dp"
         android:text="Hi! Let's get started!"
         android:textStyle="bold"
-        android:layout_marginBottom="30dp"
         app:backgroundTint="@color/colorPrimary"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         AnimationStep[] genderStep = {
                 new GraphicStep(genderAnimation, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.darkMediumGray), person, bg)
+                new BackgroundStep(this.getColor(R.color.defaultBackground), person, bg)
         };
 
         animations.add(new ComboStep(incomeStep, person, bg));
@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
         stats.add(new IntegerStat("Income - ", income));
+        stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
         stats.add(new IntegerStat("Age - ", age));
         stats.add(new CategStat("Gender - ", genders ));
         return stats;

@@ -20,7 +20,7 @@ public class MoneyStackGraphic implements CanvasDrawable {
     Bitmap baseImage, topImage;
     // Number of items to show on the stack
     int stackNum = 0;
-    private Paint paint = new Paint();
+    Paint paint = new Paint();
     Context context;
     int textDollars = 0;
 
