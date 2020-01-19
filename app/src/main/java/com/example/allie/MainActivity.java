@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Background bg = canvas.getBackgroundDrawable();
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(6, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
-        SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
+        SpendingGraphic spendingGraphic = new SpendingGraphic(2, this, person);
         String statString = stats.get(3).getAverage().toString();
         String genderString = statString.substring(statString.length()-6, statString.length()-2);
         double fraction = Double.parseDouble(genderString);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         AnimationStep[] spendingStep = {
                 new GraphicStep(spendingGraphic, person, bg, canvas),
                 new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg),
-                rightMove
+//                rightMove
         };
 
         AnimationStep[] incomeStep = {

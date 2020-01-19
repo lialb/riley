@@ -49,6 +49,11 @@ public class Person {
         generateFrames(context);
     }
 
+    public void setHeight(int height) {
+        this.height = height;
+        this.width = (int) ((float) height / 7) * 4;
+    }
+
     private void generateFrames(Context context) {
         Bitmap spriteSheetEven = BitmapFactory.decodeResource(context.getResources(), R.drawable.walk_even);
         Bitmap spriteSheetOdd = BitmapFactory.decodeResource(context.getResources(), R.drawable.walk_odd);
@@ -87,6 +92,11 @@ public class Person {
     }
 
     public void move(int length, final int xCoord) {
+        setWalking(true);
+        generateAnimator(length, xCoord).start();
+    }
+
+    public ValueAnimator generateAnimator(int length, int xCoord) {
         PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", this.x, xCoord);
         ValueAnimator animator = new ValueAnimator();
         animator.setValues(duration);
@@ -100,8 +110,7 @@ public class Person {
                 if (newX == xCoord) setWalking(false);
             }
         });
-
-        animator.start();
+        return animator;
     }
 
     public void draw(Canvas canvas) {
