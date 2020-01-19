@@ -81,6 +81,11 @@ public class Person {
         }
     }
 
+    public void teleport(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public void move(int length, final int xCoord) {
         PropertyValuesHolder duration = PropertyValuesHolder.ofInt("stackNum", this.x, xCoord);
         ValueAnimator animator = new ValueAnimator();
