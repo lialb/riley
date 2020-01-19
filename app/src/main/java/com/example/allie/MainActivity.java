@@ -11,6 +11,7 @@ import com.example.allie.AnimationStepImplementations.AnimationStep;
 import com.example.allie.AnimationStepImplementations.BackgroundStep;
 import com.example.allie.AnimationStepImplementations.ComboStep;
 import com.example.allie.AnimationStepImplementations.GraphicStep;
+import com.example.allie.AnimationStepImplementations.PersonStep;
 import com.example.allie.StatsPagerStuff.AttrStats;
 import com.example.allie.StatsPagerStuff.CategStat;
 import com.example.allie.StatsPagerStuff.IntegerStat;
@@ -66,25 +67,31 @@ public class MainActivity extends AppCompatActivity {
 //        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
 
 
+        PersonStep rightMove = new PersonStep(person);
+        rightMove.addMove(2000,1000);
         AnimationStep[] spendingStep = {
                 new GraphicStep(spendingGraphic, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg)
+                new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg),
+                rightMove
         };
 
         AnimationStep[] incomeStep = {
                 new GraphicStep(incomeGraphic, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.spanishPink), person, bg)
+                new BackgroundStep(this.getColor(R.color.spanishPink), person, bg),
+                rightMove
         };
 
 
         AnimationStep[] buisnessSizeStep = {
                 new GraphicStep(businessStackGraphic, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.powderBlue), person, bg)
+                new BackgroundStep(this.getColor(R.color.powderBlue), person, bg),
+                rightMove
         };
 
         AnimationStep[] genderStep = {
                 new GraphicStep(genderAnimation, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.defaultBackground), person, bg)
+                new BackgroundStep(this.getColor(R.color.defaultBackground), person, bg),
+                rightMove
         };
 
         animations.add(new ComboStep(spendingStep, person, bg));

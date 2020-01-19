@@ -9,7 +9,7 @@ public abstract class AnimationStep {
     Person person;
     Background background;
 
-    AnimationStep() {};
+    AnimationStep() {}
 
     AnimationStep(Person person, Background background) {
         this.person = person;
