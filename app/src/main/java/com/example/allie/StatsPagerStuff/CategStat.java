@@ -85,7 +85,7 @@ public class CategStat extends AttrStats<String> {
         PieData pieData = new PieData(dataSet);
         pieData.setValueFormatter(new PercentFormatter(chart));
         pieData.setValueTextColor(R.color.powderBlue);
-        //pieData.setValueTextSize(12);
+        pieData.setValueTextSize(0);
         chart.setData(pieData);
 
         chart.getDescription().setEnabled(false);

@@ -25,7 +25,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     StatsAdaptor adaptor;
-    List<AttrStats> stats;
     private CustomCanvasView canvas;
 
     @Override
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         canvas = findViewById(R.id.custom_canvas_view);
+        List<AttrStats> stats = getStats();
 
         // Transition animation to be triggered by pager
         final List<AnimationStep> animations = new ArrayList<>();
@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
-        GenderAnimation genderAnimation = new GenderAnimation(69, this);
+        String genderString = stats.get(3).getAverage().toString();
+        genderString = genderString.substring(genderString.length()-5, genderString.length()-2);
+        GenderAnimation genderAnimation = new GenderAnimation((int) Double.parseDouble(genderString), this);
 
 
         canvas.addDrawable(spendingGraphic);
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
+
 
         AnimationStep[] spendingStep = {
             new GraphicStep(spendingGraphic, person, bg, canvas),
@@ -84,7 +87,30 @@ public class MainActivity extends AppCompatActivity {
         animations.add(new ComboStep(incomeStep, person, bg));
         animations.add(new ComboStep(buisnessSizeStep, person, bg));
         animations.add(new ComboStep(genderStep, person, bg));
-        stats = new ArrayList<>();
+
+        adaptor = new StatsAdaptor(stats, this);
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(adaptor);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                animations.get(position).run();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+    }
+    private List<AttrStats> getStats() {
+        List<AttrStats> stats = new ArrayList<>();
 
         Random rand = new Random();
         rand.setSeed(1);
@@ -116,26 +142,7 @@ public class MainActivity extends AppCompatActivity {
         stats.add(new IntegerStat("Income - ", income));
         stats.add(new IntegerStat("Age - ", age));
         stats.add(new CategStat("Gender - ", genders ));
-        adaptor = new StatsAdaptor(stats, this);
-        viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(adaptor);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                animations.get(position).run();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
+        return stats;
     }
 }
 

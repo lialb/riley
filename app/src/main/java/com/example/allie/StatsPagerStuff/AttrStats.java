@@ -35,7 +35,7 @@ public abstract class AttrStats<T> {
     public PieChart chart;
 
 
-    abstract T getAverage();
+    public abstract T getAverage();
 
     void addDataPoint(T newPt) {
         dataPoints.add(newPt);
