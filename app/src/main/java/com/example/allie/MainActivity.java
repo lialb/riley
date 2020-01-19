@@ -53,27 +53,12 @@ public class MainActivity extends AppCompatActivity {
         canvas.addDrawable(incomeGraphic);
         incomeGraphic.startAnimation();
 
-//        Button button = findViewById(R.id.button);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Test button
-//            person.setWalking(true);
-//            person.teleport(-30, 1000);
-//            person.move(2000, 1200);
-//            }
-//        });
-
-//        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
-
-
         PersonStep rightMove = new PersonStep(person);
-        rightMove.addMove(2000,1000);
+        rightMove.addMove(2500,1500);
 
         AnimationStep[] spendingStep = {
                 new GraphicStep(spendingGraphic, person, bg, canvas),
                 new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg),
-//                rightMove
         };
 
         AnimationStep[] incomeStep = {

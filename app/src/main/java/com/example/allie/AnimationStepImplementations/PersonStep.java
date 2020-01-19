@@ -22,6 +22,7 @@ public class PersonStep extends AnimationStep  {
     @Override
     public void run() {
         person.setWalking(false);
+        person.setHeight(400);
         for (int[] step : steps) {
             person.move(step[0], step[1]);
         }
