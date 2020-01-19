@@ -34,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
         canvas = findViewById(R.id.custom_canvas_view);
 
         // Transition animation to be triggered by pager
-        List<AnimationStep> animations = new ArrayList<>();
+        final List<AnimationStep> animations = new ArrayList<>();
         Person person = canvas.getPerson();
         Background bg = canvas.getBackgroundDrawable();
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
+        BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         canvas.addDrawable(incomeGraphic);
 
 
@@ -53,14 +54,18 @@ public class MainActivity extends AppCompatActivity {
         animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
 
         AnimationStep[] incomeStep = {
-            new GraphicStep(incomeGraphic, person, bg),
+            new GraphicStep(incomeGraphic, person, bg, canvas),
             new BackgroundStep(getResources().getColor(R.color.spanishPink), person, bg)
         };
 
-        animations.add(new ComboStep(incomeStep, person, bg));
 
-//        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
-        animations.add(new BackgroundStep(getResources().getColor(R.color.powderBlue), person, bg));
+        AnimationStep[] buisnessSizeStep = {
+                new GraphicStep(businessStackGraphic, person, bg, canvas),
+                new BackgroundStep(getResources().getColor(R.color.powderBlue), person, bg)
+        };
+
+        animations.add(new ComboStep(incomeStep, person, bg));
+        animations.add(new ComboStep(buisnessSizeStep, person, bg));
 
         stats = new ArrayList<>();
 

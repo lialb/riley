@@ -10,35 +10,44 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import com.example.allie.CanvasDrawable;
-import com.example.allie.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoneyStackGraphic implements CanvasDrawable {
     List<Rect> rects = new ArrayList<>();
-    Bitmap img;
+    Bitmap baseImage, topImage;
     // Number of items to show on the stack
     int stackNum = 0;
     private Paint paint = new Paint();
 
+    public MoneyStackGraphic() {};
+
     public MoneyStackGraphic(int height, Context context) {
+        paint.setAntiAlias(true);
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.STROKE);
+
         // Hardcoded screen resolution
         int verticalSpacing = 60;
         int size = 600;
-        int x = (1316 - (size - 40)) / 2;
+        int x = 450;
         int y = 1500;
 
+        generateRects(height, verticalSpacing, size, x, y);
+        setImages(R.drawable.money_stack, R.drawable.money_stack, context);
+
+    }
+
+    void setImages(int base, int top, Context context) {
+        baseImage = BitmapFactory.decodeResource(context.getResources(), base);
+        topImage = BitmapFactory.decodeResource(context.getResources(), top);
+    }
+
+    void generateRects(int height, int verticalSpacing, int size, int x, int y) {
         for (int i = 0; i < height; ++i) {
             rects.add(new Rect(x, y - verticalSpacing * i,
                     x + size, y + size - verticalSpacing * i));
         }
-
-        img = BitmapFactory.decodeResource(context.getResources(), R.drawable.money_stack);
-        paint.setAntiAlias(true);
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.STROKE);
     }
 
     public void startAnimation() {
@@ -57,10 +66,11 @@ public class MoneyStackGraphic implements CanvasDrawable {
     }
 
     public void draw(Canvas canvas) {
-        System.out.println(canvas.getWidth());
         for (int i = 0; i < stackNum; ++i) {
             Rect rect = rects.get(i);
-            canvas.drawBitmap(img, null, rect, paint);
+
+            Bitmap toDraw = (i != stackNum - 1) ? baseImage : topImage;
+            canvas.drawBitmap(toDraw, null, rect, paint);
         }
     }
 }

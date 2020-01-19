@@ -34,7 +34,7 @@ public class Person {
     }
 
     public void draw(Canvas canvas) {
-        person.draw(canvas);
+//        person.draw(canvas);
     }
 
     public void start() {

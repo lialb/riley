@@ -1,6 +1,9 @@
 package com.example.allie.AnimationStepImplementations;
 
+import android.graphics.Canvas;
+
 import com.example.allie.Background;
+import com.example.allie.CanvasDrawable;
 import com.example.allie.Person;
 
 import java.util.List;

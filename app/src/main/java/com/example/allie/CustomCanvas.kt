@@ -39,4 +39,8 @@ class CustomCanvasView @JvmOverloads constructor(context: Context, attrs: Attrib
         return person
     }
 
+    fun drawableStored(canvasDrawable: CanvasDrawable): Boolean {
+        return canvasDrawable in canvasDrawables
+    }
+
 }
