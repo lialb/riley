@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
-        String genderString = stats.get(3).getAverage().toString();
-        genderString = genderString.substring(genderString.length()-5, genderString.length()-2);
-        GenderAnimation genderAnimation = new GenderAnimation((int) Double.parseDouble(genderString), this);
+        String statString = stats.get(3).getAverage().toString();
+        String genderString = statString.substring(statString.length()-6, statString.length()-2);
+        double fraction = Double.parseDouble(genderString);
+
+        GenderAnimation genderAnimation = new GenderAnimation((int) fraction, this);
 
 
         canvas.addDrawable(spendingGraphic);
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         AnimationStep[] genderStep = {
                 new GraphicStep(genderAnimation, person, bg, canvas),
-                new BackgroundStep(this.getColor(R.color.darkMediumGray), person, bg)
+                new BackgroundStep(this.getColor(R.color.defaultBackground), person, bg)
         };
 
         animations.add(new ComboStep(spendingStep, person, bg));
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ArrayList<String> genders = new ArrayList<>();
         for (int i : income) {
-            if ( i > 65) {
+            if ( i > 60) {
                 genders.add("Male");
             } else {
                 genders.add("Female");
