@@ -30,8 +30,8 @@ public class CategStat extends AttrStats<String> {
 
     @Override
     public String getAverage() {
-        long ls = this.dataPoints.stream().filter(line -> !"m".equals(line)).count();
-        long ms = this.dataPoints.stream().filter(line -> "m".equals(line)).count();
+        long ls = this.dataPoints.stream().filter(line -> !"Male".equals(line)).count();
+        long ms = this.dataPoints.stream().filter(line -> "Male".equals(line)).count();
         if (ms > ls) return "Male " + (ms/(ls+ms)) + "%" ;
         else return "Female " + ((double)ls/(ls+ms))*100 + "%";
     }
@@ -69,7 +69,7 @@ public class CategStat extends AttrStats<String> {
 
         //colors.add(context.getColor(R.color.darkMediumGray));
         //colors.add(context.getColor(R.color.spanishPink));
-        colors.add(context.getColor(R.color.primaryRed));
+        colors.add(context.getColor(R.color.spanishPink));
 
         colors.add(context.getColor(R.color.primaryDarkBlue));
 
