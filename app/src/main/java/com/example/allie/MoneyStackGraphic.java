@@ -20,7 +20,7 @@ public class MoneyStackGraphic implements CanvasDrawable {
     int stackNum = 0;
     private Paint paint = new Paint();
 
-    public MoneyStackGraphic() {};
+    public MoneyStackGraphic() {}
 
     public MoneyStackGraphic(int height, Context context) {
         paint.setAntiAlias(true);

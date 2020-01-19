@@ -13,6 +13,7 @@ import com.example.allie.AnimationStepImplementations.ComboStep;
 import com.example.allie.AnimationStepImplementations.GraphicStep;
 import com.example.allie.StatsPagerStuff.AttrStats;
 import com.example.allie.StatsPagerStuff.IntegerStat;
+import com.example.allie.StatsPagerStuff.SpendingGraphic;
 import com.example.allie.StatsPagerStuff.StatsAdaptor;
 
 import java.util.ArrayList;
@@ -39,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
         Background bg = canvas.getBackgroundDrawable();
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(10, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this);
-        canvas.addDrawable(incomeGraphic);
+        SpendingGraphic spendingGraphic = new SpendingGraphic(2, this);
 
+        canvas.addDrawable(incomeGraphic);
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
+//        animations.add(new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg));
+
+        AnimationStep[] spendingStep = {
+            new GraphicStep(spendingGraphic, person, bg, canvas),
+            new BackgroundStep(getResources().getColor(R.color.cambridgeBlue), person, bg)
+        };
 
         AnimationStep[] incomeStep = {
             new GraphicStep(incomeGraphic, person, bg, canvas),
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 new BackgroundStep(getResources().getColor(R.color.powderBlue), person, bg)
         };
 
+        animations.add(new ComboStep(spendingStep, person, bg));
         animations.add(new ComboStep(incomeStep, person, bg));
         animations.add(new ComboStep(buisnessSizeStep, person, bg));
 
@@ -82,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 1000;  i++) {
             income.add(((int)(Math.random() * 100000)));
         }
+
         age.sort(Integer::compareTo);
         stats.add(new IntegerStat("Age - ", age));
         stats.add(new IntegerStat("Income - ", income));
