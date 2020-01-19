@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Test button
-                person.start();
+            person.setWalking(true);
             }
         });
 
