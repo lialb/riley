@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         stats.add(new IntegerStat("Income - ", income));
         stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
-        stats.add(new IntegerStat("Age - ", age));
+        stats.add(new IntegerStat("Revenue Sources - ", age));
         stats.add(new CategStat("Gender - ", genders ));
         return stats;
     }
