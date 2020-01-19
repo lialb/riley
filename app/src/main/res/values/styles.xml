@@ -9,4 +9,8 @@
         <item name="android:fontFamily">@font/comfortaa_regular</item>
     </style>
 
+    <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/android_icon_48x48</item>
+    </style>
+
 </resources>

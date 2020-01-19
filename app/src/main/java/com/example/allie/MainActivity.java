@@ -43,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
         MoneyStackGraphic incomeGraphic = new MoneyStackGraphic(6, this);
         BusinessStackGraphic businessStackGraphic = new BusinessStackGraphic(4, this, person);
         SpendingGraphic spendingGraphic = new SpendingGraphic(2, this, person);
+
+        LanguageGraphic languageGraphic = new LanguageGraphic(this, person);
         String statString = stats.get(3).getAverage().toString();
         String genderString = statString.substring(statString.length()-6, statString.length()-2);
         double fraction = Double.parseDouble(genderString);
 
         GenderAnimation genderAnimation = new GenderAnimation((int) fraction, this);
-
 
         canvas.addDrawable(incomeGraphic);
         incomeGraphic.startAnimation();
@@ -80,10 +81,16 @@ public class MainActivity extends AppCompatActivity {
                 rightMove
         };
 
+        AnimationStep[] languageStep = {
+                new GraphicStep(languageGraphic, person, bg, canvas),
+                new BackgroundStep(this.getColor(R.color.cambridgeBlue), person, bg)
+        };
+
         animations.add(new ComboStep(incomeStep, person, bg));
         animations.add(new ComboStep(spendingStep, person, bg));
         animations.add(new ComboStep(buisnessSizeStep, person, bg));
         animations.add(new ComboStep(genderStep, person, bg));
+        animations.add(new ComboStep(languageStep, person, bg));
 
         adaptor = new StatsAdaptor(stats, this);
         viewPager = findViewById(R.id.view_pager);
@@ -139,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         stats.add(new IntegerStat("Money Spent - ", Arrays.asList(170, 200, 45, 130, 30)));
         stats.add(new IntegerStat("Revenue Sources - ", age));
         stats.add(new CategStat("Gender - ", genders ));
+        stats.add(new CategStat("Gender - ", genders ));
+
         return stats;
     }
 }
